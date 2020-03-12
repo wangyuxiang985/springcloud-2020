@@ -13,7 +13,10 @@ import javax.annotation.Resource;
 @RestController
 public class OrderController {
 
-    private final static String PAYMENT_URL = "http://localhost:8001";
+    //单机情况下可以直接写死IP:port
+//    private final static String PAYMENT_URL = "http://localhost:8001";
+    //服务提供者集群模式下，应该写服务提供方，服务名
+    private final static String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;
