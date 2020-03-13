@@ -1,0 +1,11 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-consumer-order #服务别名，注册服务到注册中心的名字 zk创建的是临时节点，
+  cloud:
+    zookeeper:
+      connect-string: 192.168.67.132:2181 #变为集群模式，再后面追加,ip:port
+
+
