@@ -32,4 +32,11 @@ public class PaymentController {
         log.info("调用timeout方法了:{}", s);
         return s;
     }
+
+    @GetMapping("/payment/hystrix/breaker/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
+        String s = paymentHystrixService.paymentCircuitBreaker(id);
+        log.info("调用timeout方法了:{}", s);
+        return s;
+    }
 }
