@@ -27,7 +27,9 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka/
 
 #rabbit mq 相关配置，暴露bus刷新配置的端点
-#post请求http://localhost:3344/actuator/bus-refresh 实现刷新服务端通知所有客户端
+#post请求http://localhost:3344/actuator/bus-refresh 全局通知实现刷新服务端通知所有客户端
+#post请求http://localhost:3344/actuator/bus-refresh/{destination} 定点通知实现刷新服务端通知所有客户端
+#例：只通知3355不通知3366 http://localhost:3344/actuator/bus-refresh/config-client:3355
 management:
   endpoints:
     web:
