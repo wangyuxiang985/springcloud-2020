@@ -22,6 +22,7 @@ spring:
           content-type: application/json #设置消息类型可以为json，文本为：text/plain
           binder: defaultRabbit #设置要绑定的消息服务的具体设置
           group: cloud-stream-consumer #分组，同一个组中的消费者竞争消息，避免消息重复消费；不同组中的可以重复消费
+                                        #分组属性添加后能保证消息的持久化
 
 
 eureka:
