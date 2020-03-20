@@ -11,7 +11,8 @@ spring:
       config:
         server-addr: localhost:8848 #nacos作为配置中心地址
         file-extension: yaml #指定yaml格式的配置
-        group: "DEFAULT_GROUP" # 分组，默认为DEFAULT_GROUP，读取指定分组下面的文件
+        group: "DEV_GROUP" # 分组，默认为DEFAULT_GROUP，读取指定分组下面的文件
+        namespace: "6993caa3-6a3c-43b0-9d25-efff3b5aacc5" #命名空间唯一id
 
 # ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
 # nacos-config-client-dev.yaml 对应nacos配置中心上的 Data ID
