@@ -45,6 +45,8 @@ public class FlowLimitController {
     }
 
     //如果配置了热点key规则，必须配置blockHandler设置兜底方法，否则返回错误页面
+    //SentinelResource处理的是Sentinel控制台配置的违规的情况，由blockHandler方法配置的兜底处理，
+    // blockHandler配置的方法对于运行时异常不进行兜底，需要程序中控制
     @GetMapping("/hotKey")
     @SentinelResource(value = "hotKey",blockHandler = "del_hotKey")
     public String hotKey(@RequestParam(value = "p1",required = false) String p1,
