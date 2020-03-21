@@ -12,6 +12,36 @@ spring:
       transport:
         dashboard: localhost:8080 #配置sentinel dashboard地址
         port: 8719 #默认8719端口，加入被占用，会自动从8719开始一次+1扫描，直到找到未被占用的端口
+      #配置sentinel持久化数据源，此处持久化进nacos
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloudalibaba-sentinel-service
+            groupId: "DEFAULT_GROUP"
+            data-type: json
+            rulr-type: flow
+#nacos控制台添加如下配置，可以持久化一个配置规则
+#  [
+#  {
+#    "resource": "byResource",
+#    "limitApp": "default",
+#    "grade": 1,
+#    "count": 1,
+#    "strategy": 0,
+#    "controlBehavior": 0,
+#    "clusterMode": false
+#  }
+#  ]
+#  【解释】
+#  resource：资源名称
+#  limitApp：来源应用
+#  grade：阈值类型，0表示线程数，1表示QPS
+#  count：单机阈值
+#  strategy：流控模式：0表示直接，1表示关联，2表示链路
+#  controlBehavior：流控效果：0表示快速失败，1表示Warm Up，2表示排队等待
+#  clousterMode：是否集群
+
 
 management:
   endpoints:
