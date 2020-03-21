@@ -1,7 +1,10 @@
 package com.yuxiang.springcloud.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.yuxiang.springcloud.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -39,5 +42,19 @@ public class FlowLimitController {
     public String testE() {
         int i = 10 / 0;
         return "------------testE,异常比例数";
+    }
+
+    //如果配置了热点key规则，必须配置blockHandler设置兜底方法，否则返回错误页面
+    @GetMapping("/hotKey")
+    @SentinelResource(value = "hotKey",blockHandler = "del_hotKey")
+    public String hotKey(@RequestParam(value = "p1",required = false) String p1,
+                         @RequestParam(value = "p2",required = false) String p2) {
+
+        return "hotKey";
+    }
+
+    public String del_hotKey(String p1, String p2, BlockException be) {
+
+        return "del_hotKey";
     }
 }
