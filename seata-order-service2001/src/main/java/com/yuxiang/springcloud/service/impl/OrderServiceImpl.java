@@ -5,6 +5,7 @@ import com.yuxiang.springcloud.domain.Order;
 import com.yuxiang.springcloud.feign.AccountService;
 import com.yuxiang.springcloud.feign.StorageService;
 import com.yuxiang.springcloud.service.OrderService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class OrderServiceImpl  implements OrderService {
     private StorageService storageService;
 
     @Override
+    @GlobalTransactional(rollbackFor = Exception.class)//全局异常，结合seata解决分布式事务，默认AT模式（两阶段提交）
     public void create(Order order) {
         log.info("开始创建订单");
         orderDao.create(order);
